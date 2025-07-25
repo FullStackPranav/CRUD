@@ -24,3 +24,25 @@ export const registerUser=async(req,res)=>{
         res.status(500).json({message:'server error'})
     }
 }
+
+export const loginUser=async(req,res)=>{
+    const {email,password}=req.body;
+
+    try{
+        const userExists=await User.findOne({email})
+        if(!userExists){
+            return res.status(400).json({message:'email doesnt exist'})
+        }
+
+        if (password===userExists.password){
+            return res.status(200).json({message:'login succesfull'})}
+        else{
+            res.status(401).json({message:'incorrect password'})
+        }
+        
+    }
+    catch(error){
+        console.error('Login error:',error)
+        return res.status(500).json({message:'server error'})
+    }
+}
