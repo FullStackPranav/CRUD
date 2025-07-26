@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import useRoutes from './routes/useRoutes.js'
-
+import productRoutes from './routes/productRoutes.js'
 
 dotenv.config()
 
@@ -12,6 +12,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/users',useRoutes);
+app.use('/api/product',productRoutes)
 const PORT=process.env.PORT||5000;
 
 

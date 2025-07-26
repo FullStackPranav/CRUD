@@ -35,7 +35,12 @@ export const loginUser=async(req,res)=>{
         }
 
         if (password===userExists.password){
-            return res.status(200).json({message:'login succesfull'})}
+            return res.status(200).json({
+                message:'login succesfull',
+                name:userExists.name,
+                phone:userExists.phone
+            })}
+
         else{
             res.status(401).json({message:'incorrect password'})
         }
